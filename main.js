@@ -28,14 +28,14 @@ function breakTextIntoSections(text) {
 function extractCharacterNames(line) {
   const colonIndex = line.indexOf(':');
   if (colonIndex !== -1) {
-    const characterNames = line.substring(0, colonIndex).trim().split(', ');
+    const characterNames = line.substring(0, colonIndex).trim().split('[')[0].trim();
     return characterNames;
   }
   return [];
 }
 
 // Read the contents of the .txt file
-const inputFile = 'Spiderman Script.txt'; // Replace with your input file name
+const inputFile = 'input.txt'; // Replace with your input file name
 const outputFile = 'output.txt'; // Replace with your output file name
 
 fs.readFile(inputFile, 'utf8', (err, data) => {
@@ -65,8 +65,9 @@ fs.readFile(inputFile, 'utf8', (err, data) => {
   const outputLines = [];
   for (const characters of characterSets) {
     if (characters.length >= 2) {
-      for (let i = 0; i < characters.length; i++) {
-        for (let j = i + 1; j < characters.length; j++) {
+      const characterCount = characters.length;
+      for (let i = 0; i < characterCount; i++) {
+        for (let j = i + 1; j < characterCount; j++) {
           const combination = `${characters[i]}, ${characters[j]}`;
           outputLines.push(combination);
         }
@@ -77,12 +78,12 @@ fs.readFile(inputFile, 'utf8', (err, data) => {
   // Prepare the output text
   const outputText = outputLines.join('\n');
 
-  // Write the output text to a new file
+  // Write the output text to the output file
   fs.writeFile(outputFile, outputText, 'utf8', (err) => {
     if (err) {
       console.error('Error writing file:', err);
       return;
     }
-    console.log(`Output file "${outputFile}" has been created successfully.`);
+    console.log(`Output has been written to the file "${outputFile}" successfully.`);
   });
 });
