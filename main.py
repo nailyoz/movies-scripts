@@ -54,7 +54,7 @@ def extrair_duplas(cena):
 # Exemplo de uso
 roteiro = """
 [INT. Casa - Sala - Dia]
-[outra coias]
+[outra co]
 Personagem A: Olá, como vai?
 Personagem B: Bem, obrigado. E você?
 Personagem C: Bem, obrigado. E você?
@@ -70,6 +70,21 @@ coisas coisas
 [INT. Casa - Quarto - Noite]
 Personagem A: Boa noite.
 Personagem E: Boa noite.
+
+[INT. TRAIN TUNNEL - CONTINUOUS (DAY)]
+[Clutching MJ, Spider-Man SWINGS through the tunnels until--]
+MJ: (closing her eyes) Look out!
+[A train coming right at them! VVWHOOM! Spider-Man STEERS them into a different tunnel just in time!]
+EXT. QUEENS STREET - LATER (DAY)
+[A manhole cover slides open. Spider-Man emerges, stopping to help a rattled MJ climb out.]
+MJ: That was so much worse! Okay....
+Spider-Man: Are you okay?
+MJ: Yeah. Yeah...
+[Spider-Man WEBS the manhole shut, then gestures for MJ to hop back on.]
+Spider-Man: Come on, come on, come on.
+[MJ jumps into Peter’s arms. As they swing off again--]
+Spider-Man: I'm so sorry!
+EXT. PETER & MAY’S APARTMENT BUILDING - LATER (DAY)
 
 """
 
