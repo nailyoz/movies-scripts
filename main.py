@@ -2,7 +2,7 @@ import re
 from itertools import combinations
 
 def extrair_personagens(cena):
-    padrao_personagem = r"^\[?([A-Za-z\s.-]+)(?:\[vo\])?:\s"
+    padrao_personagem = r"\b(.*):"
     personagens_encontrados = re.findall(padrao_personagem, cena)
     return personagens_encontrados
 
@@ -18,7 +18,7 @@ def gerar_duplas(personagens_unicos):
     return duplas
 
 
-#def dividir_cenas(roteiro):
+def dividir_cenas(roteiro):
     cenas = []  
     cena_atual = ""
     dentro_cena = False
@@ -26,13 +26,8 @@ def gerar_duplas(personagens_unicos):
     linhas = roteiro.split("\n")
 
     for linha in linhas:
-        if "[INT." in linha or "[EXT." in linha:
+        if linha.startswith("[INT.") or linha.startswith("[EXT."):
             dentro_cena = True
-            if cena_atual:
-                cenas.append(cena_atual.strip())
-                cena_atual = ""
-        elif "]" in linha and dentro_cena:
-            dentro_cena = False
             if cena_atual:
                 cenas.append(cena_atual.strip())
                 cena_atual = ""
@@ -50,29 +45,6 @@ def gerar_duplas(personagens_unicos):
     duplas = gerar_duplas(personagens)
 
     return duplas
-
-def dividir_cenas(roteiro):
-    cenas = []
-    cena_atual = ''
-
-    linhas = roteiro.split("\n")  # Divide o roteiro em linhas
-
-    for linha in linhas:
-        if linha.startswith("[INT.") or linha.startswith("[EXT."):
-            # Nova cena encontrada
-            if cena_atual:
-                cenas.append(cena_atual)
-            cena_atual = linha
-        else:
-            # Continuação da cena atual
-            if cena_atual:
-                cena_atual += " " + linha  # Concatena a linha com a cena atual
-
-    # Adicionar última cena à lista de cenas
-    if cena_atual:
-        cenas.append(cena_atual)
-
-    return cenas
 
 
 # Exemplo de uso
@@ -104,6 +76,8 @@ EXT. QUEENS STREET - LATER (DAY)
 MJ: That was so much worse! Okay....
 Spider-Man: Are you okay?
 MJ: Yeah. Yeah...
+Personagem B: Claro, vamos lá.
+Personagem D: Bem, obrigado. E você?
 [INT. TRAIN TUNNEL - CONTINUOUS (DAY)]
 
 [Spider-Man WEBS the manhole shut, then gestures for MJ to hop back on.]
@@ -117,6 +91,7 @@ EXT. PETER & MAY’S APARTMENT BUILDING - LATER (DAY)
 cenas_divididas = dividir_cenas(roteiro)
 
 for cena in cenas_divididas:
-    print("--- START ---")
+    personagens_encontrados = extrair_personagens(cena)
+    print(personagens_encontrados)
     print(cena)
-    print("--- END ---")
+    print("-"*30)
