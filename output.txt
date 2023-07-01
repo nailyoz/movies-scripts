@@ -1,0 +1,12 @@
+Personagem C Personagem B
+Personagem C Personagem D
+Personagem B Personagem D
+Personagem A Personagem D
+Personagem A Personagem E
+MJ Spider-Man
+MJ Personagem B
+MJ Personagem D
+Spider-Man Personagem B
+Spider-Man Personagem D
+Personagem B Personagem D
+
