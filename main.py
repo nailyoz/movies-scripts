@@ -2,7 +2,7 @@ import re
 from itertools import combinations
 
 def extrair_personagens(cena):
-    padrao_personagem = r"\b(.*):"
+    padrao_personagem = r"\b(.*?):"
     personagens_encontrados = re.findall(padrao_personagem, cena)
     return personagens_encontrados
 
@@ -45,7 +45,7 @@ def extrair_duplas(cena):
 
 
 #manipulando roteiro
-arquivo = open("input.txt", "r")
+arquivo = open("Spiderman.txt", "r", encoding="utf8")
 roteiro = arquivo.readlines()
 
 cenas_divididas = dividir_cenas(roteiro)
@@ -62,5 +62,6 @@ for cena in cenas_divididas:
     duplas = extrair_duplas(cena)
     escrevendo_data(duplas)
     print("Cena processada")
-    print(duplas)
     print("-"*30)
+
+#removendo palavras intrusivas do arquivo
