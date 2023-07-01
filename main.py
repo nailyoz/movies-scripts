@@ -23,9 +23,7 @@ def dividir_cenas(roteiro):
     cena_atual = ""
     dentro_cena = False
 
-    linhas = roteiro.split("\n")
-
-    for linha in linhas:
+    for linha in roteiro:
         if linha.startswith("[INT.") or linha.startswith("[EXT."):
             dentro_cena = True
             if cena_atual:
@@ -43,7 +41,6 @@ def extrair_duplas(cena):
     personagens_encontrados = extrair_personagens(cena)
     personagens = personagens_unicos(personagens_encontrados)
     duplas = gerar_duplas(personagens)
-
     return duplas
 
 
