@@ -1,89 +1,54 @@
-const fs = require('fs');
-
 function breakTextIntoSections(text) {
-  const sections = [];
-  const pattern = /\[(.*?)\]/g;
-  let match;
-  let lastIndex = 0;
-
-  while ((match = pattern.exec(text)) !== null) {
-    const sectionStartIndex = match.index + match[0].length;
-    const sectionEndIndex = pattern.lastIndex;
-    const section = text.substring(sectionStartIndex, sectionEndIndex).trim();
-    sections.push(section);
-    lastIndex = pattern.lastIndex;
-  }
-
-  // Add the remaining text after the last section
-  if (lastIndex < text.length) {
-    const remainingText = text.substring(lastIndex).trim();
-    if (remainingText.length > 0) {
-      sections.push(remainingText);
+    const sections = [];
+    const pattern = /\[(.*?)\]/g;
+    let match;
+    let lastIndex = 0;
+  
+    while ((match = pattern.exec(text)) !== null) {
+      const sectionStartIndex = match.index + match[0].length;
+      const sectionEndIndex = pattern.lastIndex;
+      const section = text.substring(sectionStartIndex, sectionEndIndex).trim();
+      sections.push(section);
+      lastIndex = pattern.lastIndex;
     }
+  
+    // Add the remaining text after the last section
+    if (lastIndex < text.length) {
+      const remainingText = text.substring(lastIndex).trim();
+      if (remainingText.length > 0) {
+        sections.push(remainingText);
+      }
+    }
+  
+    return sections;
   }
-
-  return sections;
-}
-
-function extractCharacterNames(line) {
-  const colonIndex = line.indexOf(':');
-  if (colonIndex !== -1) {
-    const characterNames = line.substring(0, colonIndex).trim().split('[')[0].trim();
-    return characterNames;
+  
+  function extractCharacterName(line) {
+    const colonIndex = line.indexOf(':');
+    if (colonIndex !== -1) {
+      const characterName = line.substring(0, colonIndex).trim();
+      return characterName;
+    }
+    return '';
   }
-  return [];
-}
-
-// Read the contents of the .txt file
-const inputFile = 'input.txt'; // Replace with your input file name
-const outputFile = 'output.txt'; // Replace with your output file name
-
-fs.readFile(inputFile, 'utf8', (err, data) => {
-  if (err) {
-    console.error('Error reading file:', err);
-    return;
-  }
-
-  // Process the file contents
-  const sections = breakTextIntoSections(data);
-
-  // Extract and collect the character names
-  const characterSets = [];
+  
+  // Example usage
+  const text = `[OVER COLUMBIA LOGO:]
+  Quentin Beck [vo]: I managed to send the Elemental back through the dimensional rift, but I don't think I'm gonna make it off this bridge alive. Spider-Man attacked me for some reason! He has an army of weaponized drones, Stark technology. He's saying he's the only one who's gonna be the new Iron Man, no one else!
+  E.D.I.T.H. [vo]: Are you sure you want to commence the drone attack? There will be significant casualties.
+  Peter Parker [vo]: Do it! Execute them all!
+  [DRONES FIRE! EXPLOSIONS from the Tower Bridge.]
+  [OVER MARVEL LOGO:]
+  Pat Kiernan [vo]: This shocking video was released earlier today, on the controversial news website TheDailyBugle.net.`;
+  
+  const sections = breakTextIntoSections(text);
   for (const section of sections) {
     const lines = section.split('\n');
-    const characterNames = [];
     for (const line of lines) {
-      const names = extractCharacterNames(line);
-      if (names.length > 0) {
-        characterNames.push(names);
-      }
-    }
-    characterSets.push(characterNames);
-  }
-
-  // Generate combinations of two characters for each scene
-  const outputLines = [];
-  for (const characters of characterSets) {
-    if (characters.length >= 2) {
-      const characterCount = characters.length;
-      for (let i = 0; i < characterCount; i++) {
-        for (let j = i + 1; j < characterCount; j++) {
-          const combination = `${characters[i]}, ${characters[j]}`;
-          outputLines.push(combination);
-        }
-      }
+      const characterName = extractCharacterName(line);
+      console.log('Input:', characterName);
+      console.log('Output:', line);
+      console.log('---');
     }
   }
-
-  // Prepare the output text
-  const outputText = outputLines.join('\n');
-
-  // Write the output text to the output file
-  fs.writeFile(outputFile, outputText, 'utf8', (err) => {
-    if (err) {
-      console.error('Error writing file:', err);
-      return;
-    }
-    console.log(`Output has been written to the file "${outputFile}" successfully.`);
-  });
-});
+  
