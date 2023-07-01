@@ -2,7 +2,7 @@ import re
 from itertools import combinations
 
 def extrair_personagens(cena):
-    padrao_personagem = r"\bPersonagem [A-Z]\b"
+    padrao_personagem = r"^\[?([A-Za-z\s.-]+)(?:\[vo\])?:\s"
     personagens_encontrados = re.findall(padrao_personagem, cena)
     return personagens_encontrados
 
@@ -18,7 +18,7 @@ def gerar_duplas(personagens_unicos):
     return duplas
 
 
-def dividir_cenas(roteiro):
+#def dividir_cenas(roteiro):
     cenas = []  
     cena_atual = ""
     dentro_cena = False
@@ -44,12 +44,36 @@ def dividir_cenas(roteiro):
 
     return cenas
 
-def extrair_duplas(cena):
+#def extrair_duplas(cena):
     personagens_encontrados = extrair_personagens(cena)
     personagens = personagens_unicos(personagens_encontrados)
     duplas = gerar_duplas(personagens)
 
     return duplas
+
+def dividir_cenas(roteiro):
+    cenas = []
+    cena_atual = ''
+
+    linhas = roteiro.split("\n")  # Divide o roteiro em linhas
+
+    for linha in linhas:
+        if linha.startswith("[INT.") or linha.startswith("[EXT."):
+            # Nova cena encontrada
+            if cena_atual:
+                cenas.append(cena_atual)
+            cena_atual = linha
+        else:
+            # Continuação da cena atual
+            if cena_atual:
+                cena_atual += " " + linha  # Concatena a linha com a cena atual
+
+    # Adicionar última cena à lista de cenas
+    if cena_atual:
+        cenas.append(cena_atual)
+
+    return cenas
+
 
 # Exemplo de uso
 roteiro = """
@@ -80,6 +104,8 @@ EXT. QUEENS STREET - LATER (DAY)
 MJ: That was so much worse! Okay....
 Spider-Man: Are you okay?
 MJ: Yeah. Yeah...
+[INT. TRAIN TUNNEL - CONTINUOUS (DAY)]
+
 [Spider-Man WEBS the manhole shut, then gestures for MJ to hop back on.]
 Spider-Man: Come on, come on, come on.
 [MJ jumps into Peter’s arms. As they swing off again--]
@@ -90,10 +116,7 @@ EXT. PETER & MAY’S APARTMENT BUILDING - LATER (DAY)
 
 cenas_divididas = dividir_cenas(roteiro)
 
-for i, cena in enumerate(cenas_divididas, start=1):
-    duplas = extrair_duplas(cena)
-    
-    print(f"Cena {i}:")
-    for dupla in duplas:
-        print(dupla)
-    print("-" * 30)
+for cena in cenas_divididas:
+    print("--- START ---")
+    print(cena)
+    print("--- END ---")
