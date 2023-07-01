@@ -1,4 +1,21 @@
-﻿[Spider-Man and MJ PLUMMET into view behind him... Spider-Man WEBBING a grate in the sidewalk... YANKING it up... DROPPING them through the hole and... SLAMMING it closed behind them!]
+﻿[INT. Casa - Sala - Dia]
+[outra co]
+Personagem A: Olá, como vai?
+Personagem B: Bem, obrigado. E você?
+Personagem C: Bem, obrigado. E você?
+Personagem A: Olá, como vai?
+[EXT. Rua - Dia]
+Personagem C: Vamos dar uma volta?
+Personagem B: Claro, vamos lá.
+Personagem D: Bem, obrigado. E você?
+[INT. Restaurante - Noite]
+Personagem A: Gostaria de fazer um pedido?
+Personagem D: Sim, por favor.
+coisas coisas
+[INT. Casa - Quarto - Noite]
+Personagem A: Boa noite.
+Personagem E: Boa noite.
+
 [INT. TRAIN TUNNEL - CONTINUOUS (DAY)]
 [Clutching MJ, Spider-Man SWINGS through the tunnels until--]
 MJ: (closing her eyes) Look out!
@@ -8,11 +25,12 @@ EXT. QUEENS STREET - LATER (DAY)
 MJ: That was so much worse! Okay....
 Spider-Man: Are you okay?
 MJ: Yeah. Yeah...
+Personagem B: Claro, vamos lá.
+Personagem D: Bem, obrigado. E você?
+[INT. TRAIN TUNNEL - CONTINUOUS (DAY)]
+
 [Spider-Man WEBS the manhole shut, then gestures for MJ to hop back on.]
 Spider-Man: Come on, come on, come on.
 [MJ jumps into Peter’s arms. As they swing off again--]
 Spider-Man: I'm so sorry!
 EXT. PETER & MAY’S APARTMENT BUILDING - LATER (DAY)
-[Still carrying MJ, Spider-Man swings and lands outside his bedroom window. An unsteady MJ lifts the glass as Spider-Man hoists her up.]
-Spider-Man: I'm sorry!
-INT. PETER & MAY’S APARTMENT - LIVING ROOM - SAME TIME (DAY)
