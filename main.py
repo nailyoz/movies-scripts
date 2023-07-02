@@ -2,15 +2,17 @@ import re
 from itertools import combinations
 
 def extrair_personagens(cena):
-    padrao_personagem = r"\b(.*?):"
+    padrao_personagem = r'(?:\[.*?\])?(?:\(Cont\'d\))?\s*([^:\n[\]()]+):'
     personagens_encontrados = re.findall(padrao_personagem, cena)
     return personagens_encontrados
 
 def personagens_unicos(personagens_encontrados):
     personagens = []
     for personagem in personagens_encontrados:
-        if(personagem not in personagens):
-            personagens.append(personagem)
+        valid = len(personagem)
+        if(valid<20):
+            if(personagem not in personagens):
+                personagens.append(personagem)
     return personagens
 
 def gerar_duplas(personagens_unicos):
