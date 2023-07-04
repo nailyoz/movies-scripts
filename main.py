@@ -55,7 +55,7 @@ cenas_divididas = dividir_cenas(roteiro)
 #tratando arquivo de saida
 data = open("output.txt", "a")
 def escrevendo_data(duplas):
-    data.write('\n'.join('{} {}'.format(x[0],x[1]) for x in duplas))
+    data.write('\n'.join('{}, {}'.format(x[0],x[1]) for x in duplas))
     data.write('\n')
     return
 
